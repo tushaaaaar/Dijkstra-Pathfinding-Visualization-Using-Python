@@ -55,16 +55,14 @@ for i in range (COLUMNS):
     for j in range (ROWS):
         grid[i][j].set_neighbours()
 
-start_box = grid[0][0]
-start_box.start = True
-start_box.visited = True
-queue.append(start_box)
+
 
 def main ():
     begin_search = False
     target_box_set = False
     searching = True
     target_box = None
+    start_box_set = False
 
     while True:
         for event in pygame.event.get():
@@ -72,7 +70,7 @@ def main ():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            
+
             # Mouse Controls
             elif event.type == pygame.MOUSEMOTION:
                 x = pygame.mouse.get_pos()[0]
@@ -84,8 +82,16 @@ def main ():
                     j = y // BOX_HEIGHT
                     grid[i][j].wall = True
             
+            if pygame.mouse.get_pressed()[0] and not start_box_set:
+                i = x // BOX_WIDTH
+                j = y // BOX_HEIGHT
+                start_box = grid[i][j]
+                start_box.start = True
+                start_box.visited = True
+                queue.append(start_box)
+                start_box_set = True
             # Set Target
-            if pygame.mouse.get_pressed()[2] and not target_box_set:
+            if pygame.mouse.get_pressed()[2] and not target_box_set and start_box_set:
                 i = x // BOX_WIDTH
                 j = y // BOX_HEIGHT
                 grid[i][j].target = True
