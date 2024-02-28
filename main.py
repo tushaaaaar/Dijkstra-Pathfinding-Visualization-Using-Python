@@ -107,9 +107,10 @@ def main ():
                         current_box = current_box.prior
                 else:
                     for neighbour in current_box.neighbours:
-                        if not neighbour.queued and not  neighbour.wall:
+                        if not neighbour.queued and not neighbour.wall:
                             neighbour.queued = True
-                            queue.append(neighbour)
+                            neighbour.prior = current_box
+                            queue.append(neighbour) 
             else:
                 if searching:
                     Tk().wm_withdraw()
