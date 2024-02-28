@@ -2,13 +2,13 @@ from tkinter import messagebox, Tk
 import pygame
 import sys
 
-WIDTH = 500
-HEIGHT = 500
+WIDTH = 1200
+HEIGHT = 800
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-COLUMNS = 25
-ROWS = 25
+COLUMNS = 60
+ROWS = 40
 
 BOX_WIDTH = WIDTH // COLUMNS
 BOX_HEIGHT = HEIGHT // ROWS
